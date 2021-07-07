@@ -4,20 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>ai.platon.scent</groupId>
-  <artifactId>distributed-lock</artifactId>
-  <version>1.4.2</version>
+  <parent>
+    <groupId>ai.platon.pulsar</groupId>
+    <artifactId>pulsar-third</artifactId>
+    <version>1.6.3-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>pulsar-distributed-lock</artifactId>
   <packaging>pom</packaging>
 
-  <name>distributed-lock</name>
+  <name>Pulsar Distributed Lock</name>
   <description>Distributed locking</description>
-
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.4.3</version>
-    <relativePath/> <!-- lookup parent from repository -->
-  </parent>
 
   <licenses>
     <license>
@@ -48,114 +45,29 @@
   </properties>
 
   <modules>
-    <module>distributed-lock-api</module>
-    <module>distributed-lock-core</module>
-    <module>distributed-lock-mongo</module>
-    <module>distributed-lock-example</module>
+    <module>pulsar-distributed-lock-api</module>
+    <module>pulsar-distributed-lock-core</module>
+    <module>pulsar-distributed-lock-mongo</module>
+    <module>pulsar-distributed-lock-example</module>
   </modules>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>ai.platon.scent</groupId>
-        <artifactId>distributed-lock-api</artifactId>
+        <groupId>ai.platon.pulsar</groupId>
+        <artifactId>pulsar-distributed-lock-api</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>ai.platon.scent</groupId>
-        <artifactId>distributed-lock-core</artifactId>
+        <groupId>ai.platon.pulsar</groupId>
+        <artifactId>pulsar-distributed-lock-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>ai.platon.scent</groupId>
-        <artifactId>distributed-lock-mongo</artifactId>
+        <groupId>ai.platon.pulsar</groupId>
+        <artifactId>pulsar-distributed-lock-mongo</artifactId>
         <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib-jdk8</artifactId>
-      <version>${kotlin.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-test</artifactId>
-      <version>${kotlin.version}</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.6.1</version>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-          <encoding>${project.build.sourceEncoding}</encoding>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>3.2.1</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.2.0</version>
-        <configuration>
-          <additionalOptions>
-            <additionalOption>-Xdoclint:none</additionalOption>
-          </additionalOptions>
-          <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
-        </configuration>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <artifactId>kotlin-maven-plugin</artifactId>
-        <version>${kotlin.version}</version>
-        <executions>
-          <execution>
-            <id>compile</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>test-compile</id>
-            <phase>test-compile</phase>
-            <goals>
-              <goal>test-compile</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <jvmTarget>1.8</jvmTarget>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>
